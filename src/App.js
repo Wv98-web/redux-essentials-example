@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Demo from './features/demo';
+import Home from './features';
 import PostsList from './features/posts/PostsList';
 import { AddPostForm } from './features/posts/AddPostForm';
 import SinglePostPage from './features/posts/SinglePostPage';
@@ -11,11 +11,11 @@ function App() {
   return (
     <div className='App'>
       <Routes>
-        <Route exact path='/' element={<Demo />} />
-        <Route exact path='/posts' element={<PostsList />} />
+        <Route exact path='/' element={<Home />} />
+        <Route exact path='/postslist' element={<PostsList />} />
         <Route exact path='/addpostform' element={<AddPostForm />} />
-        <Route exact path='/posts/:id' element={<SinglePostPage />} />
-        <Route exact path='/editPost/:id' element={<EditPostForm />} />
+        <Route exact path='/postpage/:id' element={<SinglePostPage />} />
+        <Route exact path='/editpostform/:id' element={<EditPostForm />} />
       </Routes>
     </div>
   );

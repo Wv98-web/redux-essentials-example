@@ -44,3 +44,14 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+/src
+  index.js: 应用程序的入口点文件，渲染 React-Redux 的 <Provider>组件和入口组件 <app>。
+  App.js: 应用的入口组件。渲染顶部导航条和处理客户端路由。
+  index.css: 应用所有的样式
+/api
+  client.js: 小的 AJAX 请求客户端，用来发起 GET 和 POST 请求。
+  server.js: 为我们的数据提供假的 REST API。我们的应用程序将在稍后从这些假接口获取数据。
+/app
+  Navbar.js: 渲染顶部标题和导航
+  store.js: 创建 Redux store 实例
