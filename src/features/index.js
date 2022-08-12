@@ -1,13 +1,14 @@
 import React from 'react';
+import { Fragment } from 'react';
 
 import { AddPostForm } from './posts/AddPostForm';
 import { PostsList } from './posts/PostsList';
 
-export default function Home() {
+export const Home = () => {
   return (
-    <>
+    <Fragment>
       <AddPostForm />
       <PostsList />
-    </>
+    </Fragment>
   );
-}
+};

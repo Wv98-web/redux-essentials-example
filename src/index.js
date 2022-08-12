@@ -1,10 +1,10 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
+import './styles/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import './styles/index.css';
+import { store } from './app/store';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { worker } from './api/server';
 import { fetchUsers } from './features/users/usersSlice';
@@ -19,13 +19,18 @@ async function start() {
   store.dispatch(fetchUsers());
 
   root.render(
-    <React.StrictMode>
-      <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </Provider>
-    </React.StrictMode>
+    /**
+     * 开发模式下，生命周期、hook调用两次
+     * <React.StrictMode> 严格模式检查仅在开发模式下运行；它们不会影响生产构建
+     * 不用严格模式就好
+     */
+    // <React.StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+    // </React.StrictMode>
   );
 }
 

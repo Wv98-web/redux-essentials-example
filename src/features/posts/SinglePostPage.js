@@ -8,9 +8,9 @@ import { ReactionButtons } from './ReactionButtons';
 import { selectPostById } from './postsSlice';
 
 export const SinglePostPage = () => {
-  const { id } = useParams();
+  const { postId } = useParams();
 
-  const post = useSelector((state) => selectPostById(state, id));
+  const post = useSelector((state) => selectPostById(state, postId));
 
   if (!post) {
     return (
