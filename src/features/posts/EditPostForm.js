@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { postUpdated } from './postsSlice';
+import { postUpdated, selectPostById } from './postsSlice';
 
 export default function EditPostForm() {
   const { id } = useParams();
 
-  const post = useSelector((state) =>
-    state.posts.find((post) => post.id === id)
-  );
+  const post = useSelector((state) => selectPostById(state, id));
   const users = useSelector((state) => state.users);
 
   const [title, setTitle] = useState(post.title);
@@ -42,30 +40,30 @@ export default function EditPostForm() {
     <section>
       <h2>编辑帖子</h2>
       <form>
-        <label htmlFor='postTitle'>帖子标题：</label>
+        <label htmlFor="postTitle">Post Title:</label>
         <input
-          type='text'
-          id='postTitle'
-          name='postTitle'
+          type="text"
+          id="postTitle"
+          name="postTitle"
           placeholder="What's on your mind?"
           value={title}
           onChange={onTitleChanged}
         />
-        <label htmlFor='postContent'>内容：</label>
+        <label htmlFor="postContent">Content:</label>
         <textarea
-          id='postContent'
-          name='postContent'
+          id="postContent"
+          name="postContent"
           value={content}
           onChange={onContentChanged}
         />
-        <label htmlFor='postAuthor'>Author:</label>
-        <select id='postAuthor' value={userId} onChange={onAuthorChanged}>
-          <option value=''>Who are you?</option>
+        <label htmlFor="postAuthor">Author:</label>
+        <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
+          <option value="">Who are you?</option>
           {usersOptions}
         </select>
       </form>
-      <button type='button' onClick={onSavePostClicked} disabled={!canSave}>
-        保存帖子
+      <button type="button" onClick={onSavePostClicked} disabled={!canSave}>
+        Save Post
       </button>
     </section>
   );

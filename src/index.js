@@ -5,20 +5,31 @@ import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './styles/index.css';
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom';
+import { worker } from './api/server';
+import { fetchUsers } from './features/users/usersSlice';
 
-const container = document.getElementById('root');
-const root = createRoot(container);
+async function start() {
+  const container = document.getElementById('root');
+  const root = createRoot(container);
 
-root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>
-);
+  // Start our mock API server
+  await worker.start({ onUnhandledRequest: 'bypass' });
+
+  store.dispatch(fetchUsers());
+
+  root.render(
+    <React.StrictMode>
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
+    </React.StrictMode>
+  );
+}
+
+start();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

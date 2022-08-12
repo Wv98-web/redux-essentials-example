@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { AddPostForm } from './posts/AddPostForm';
-import PostsList from './posts/PostsList';
+import { PostsList } from './posts/PostsList';
 
-export default function Demo() {
+export default function Home() {
   return (
     <>
       <AddPostForm />

@@ -8,22 +8,18 @@ const reactionEmoji = {
   hooray: '🎉',
   heart: '❤️',
   rocket: '🚀',
-  eyes: '👀'
+  eyes: '👀',
 };
 
 export const ReactionButtons = ({ post }) => {
   const dispatch = useDispatch();
 
-  /**
-   * Object.entries(reactionEmoji)
-   * [ ['thumbsUp', '0'], ['hooray', '0'], ['heart', '0'] ]
-   */
   const reactionButtons = Object.entries(reactionEmoji).map(([name, emoji]) => {
     return (
       <button
         key={name}
-        type='button'
-        className='muted-button reaction-button'
+        type="button"
+        className="muted-button reaction-button"
         onClick={() =>
           dispatch(reactionAdded({ postId: post.id, reaction: name }))
         }
