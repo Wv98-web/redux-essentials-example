@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { addNewPost } from './postsSlice';
+import { selectAllUsers } from '../users/usersSlice';
 
 export const AddPostForm = () => {
   const [title, setTitle] = useState('');
@@ -10,7 +11,7 @@ export const AddPostForm = () => {
   const [addRequestStatus, setAddRequestStatus] = useState('idle');
 
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users);
+  const users = useSelector(selectAllUsers);
 
   const onTitleChanged = (e) => setTitle(e.target.value);
   const onContentChanged = (e) => setContent(e.target.value);
@@ -54,6 +55,11 @@ export const AddPostForm = () => {
           value={title}
           onChange={onTitleChanged}
         />
+        <label htmlFor="postAuthor">Author:</label>
+        <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
+          <option value=""></option>
+          {usersOptions}
+        </select>
         <label htmlFor="postContent">Content:</label>
         <textarea
           id="postContent"
@@ -61,11 +67,6 @@ export const AddPostForm = () => {
           value={content}
           onChange={onContentChanged}
         />
-        <label htmlFor="postAuthor">Author:</label>
-        <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
-          <option value="">Who are you?</option>
-          {usersOptions}
-        </select>
         <button type="button" onClick={onSavePostClicked} disabled={!canSave}>
           Save Post
         </button>
